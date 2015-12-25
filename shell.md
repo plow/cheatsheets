@@ -1,5 +1,3 @@
-# Bash Cheatsheet
-
 ### System
 
 Mount an ISO disc image to a given mount point.
