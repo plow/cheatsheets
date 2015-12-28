@@ -2,9 +2,11 @@
 
 Mount an ISO disc image to a given mount point.
 
-``mount myiso.iso /media/iso/ -t iso9660 -o ro,loop=/dev/loop0``
+``mount -o loop -t iso9660 myiso.iso /media/iso/``
 
 Executes a command foo for every file in the current directory matching the file name pattern.
+
+``find . -name '*.txt' -exec foo {} \;`` or
 
 ``find . -name '*.txt' | while read L; do foo "$L"; done`` or
 
@@ -12,9 +14,15 @@ Executes a command foo for every file in the current directory matching the file
 
 Recursively removes all .svn folders from current directory.
 
+``find . -type d -name .svn -exec echo rm -rf {} \;`` or
+
 ``rm -rf `find . -type d -name .svn` ``
 
-Recursively match patterns in file names and replace them using sed.
+Recursively match patterns in file names and replace them.
+
+``find . -type d -exec rename .png .ppm \*.png \;``
+
+using sed:
 
 ``for i in `find . -name '*.png'`; do newfile=$(echo $i | sed s/png/ppm/); convert $i $newfile; rm -f $i; done``
 
@@ -34,11 +42,21 @@ GhostScript extracts a subset of pages from a PDF (here, page 2-4).
 
 ### Easy stuff (just can’t keep it in mind!)
 
-``rpm -qa`` : List of all installed packages (Fedora)
+``rpm -qa`` : List of all installed packages (Fedora/RHEL/CentOS)
+
+``rpm -qa redhat-release\*`` : List specific package(s) (Fedora/RHEL/CentOS)
 
 ``tar xvzf file.tar.gz`` : Decompress and extract a .tar.gz
 
-``lspci`` : Hardware info
+``tar xvf file.tar.bz`` : Decompress and extract a .tar.{b,g,x,...}z
+
+``lshw`` : Hardware info
+
+``lspci`` : PCI info
+
+``lscpu`` : CPU info
+
+``lsscsi`` : SCSI info
 
 ``uname -r`` : Kernel in use (all: uname -a)
 
