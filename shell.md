@@ -2,9 +2,11 @@
 
 Mount an ISO disc image to a given mount point.
 
-``mount myiso.iso /media/iso/ -t iso9660 -o ro,loop=/dev/loop0``
+``mount -o loop -t iso9660 myiso.iso /media/iso/``
 
 Executes a command foo for every file in the current directory matching the file name pattern.
+
+``find . -name '*.txt' -exec foo {} \;`` or
 
 ``find . -name '*.txt' | while read L; do foo "$L"; done`` or
 
@@ -12,11 +14,15 @@ Executes a command foo for every file in the current directory matching the file
 
 Recursively removes all .svn folders from current directory.
 
+``find . -type d -name .svn -exec rm -rf {} \;`` or
+
 ``rm -rf `find . -type d -name .svn` ``
 
-Recursively match patterns in file names and replace them using sed.
+Recursively match patterns in file names and replace them (here, changing extension from .png to .ppm).
 
-``for i in `find . -name '*.png'`; do newfile=$(echo $i | sed s/png/ppm/); convert $i $newfile; rm -f $i; done``
+``find . -type f -exec rename 's/\.png$/\.ppm/i' {} \;`` (passing a Perl expression to ``rename``) or (using sed)
+
+``for i in `find . -name '*.png'`; do newfile=$(echo $i | sed s/png/ppm/); mv $i $newfile; done``
 
 Recursively search for a string in a particular directory
 
@@ -34,11 +40,13 @@ GhostScript extracts a subset of pages from a PDF (here, page 2-4).
 
 ### Easy stuff (just can’t keep it in mind!)
 
-``rpm -qa`` : List of all installed packages (Fedora)
+``rpm -qa`` : List of all installed packages (Fedora/RHEL/CentOS)
 
-``tar xvzf file.tar.gz`` : Decompress and extract a .tar.gz
+``rpm -qa redhat-release\*`` : List specific package(s) (Fedora/RHEL/CentOS)
 
-``lspci`` : Hardware info
+``tar xvf file.tar.bz`` : Decompress and extract a .tar.{b,g,x,...}z
+
+``lshw``, ``lspci``, ``lscpu``, ``lsscsi`` : Hardware info, PCI info, CPU info, SCSI info, respectievely
 
 ``uname -r`` : Kernel in use (all: uname -a)
 
