@@ -1,0 +1,6 @@
+
+# scans for new wifi networks
+alias wifiscan='sudo iwlist wlan0 scan | grep ESSID:'
+
+# git
+alias gits='git status'
