@@ -46,6 +46,8 @@ GhostScript extracts a subset of pages from a PDF (here, page 2-4).
 
 ``tar xvf file.tar.bz`` : Decompress and extract a .tar.{b,g,x,...}z
 
+``tar -zcvf archive.tar.gz dirname`` : Compress an entire directory
+
 ``lshw``, ``lspci``, ``lscpu``, ``lsscsi`` : Hardware info, PCI info, CPU info, SCSI info, respectievely
 
 ``uname -r`` : Kernel in use (all: uname -a)
