@@ -28,6 +28,16 @@ Recursively search for a string in a particular directory
 
 ``grep -r 'searchterm' /dir/to/search``
 
+### Permissions
+
+Set file permissions recursively to 644 (`-rw-r--r--`):
+
+``find /opt/foo -type f -exec chmod 644 {} \;``
+
+Set directory permissions recursively to 755 (`drwxr-xr-x`):
+
+``find /opt/foo -type d -exec chmod 755 {} \;``
+
 ### Document Handling
 
 GhostScript strings together an arbitrary number of PDF documents in the given order.
